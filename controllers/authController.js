@@ -8,7 +8,6 @@ const register = async (req, res) => {
 
         const { name, email, password } = req.body;
       
-        // Check if user already exists
         const [existingUser] = await db.query('SELECT * FROM users WHERE email = ?', [email]);
 
         if (existingUser.length > 0) {
