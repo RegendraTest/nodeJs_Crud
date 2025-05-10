@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
-const { validateProduct } = require('../middleware/productValidate');
-const upload = require('../middleware/upload');
+const { validateProduct } = require('../api/productValidate');
+const upload = require('../api/upload');
 const {
     getAllProducts,
     getProductById,

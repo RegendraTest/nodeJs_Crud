@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const { validateUser } = require('../middleware/validate');
+const { validateUser } = require('../api/validate');
 const {
     getAllUsers,
     getUserById,

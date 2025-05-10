@@ -1,8 +1,8 @@
 const express = require('express');
 const router = express.Router();
-const { validateRegister, validateLogin } = require('../middleware/validate');
+const { validateRegister, validateLogin } = require('../api/validate');
 const { register, login } = require('../controllers/authController');
-const upload = require('../middleware/upload');
+const upload = require('../api/upload');
 
 // Create uploads directory if it doesn't exist
 const fs = require('fs');
