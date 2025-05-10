@@ -4,8 +4,14 @@ const db = require('../config/db.config');
 
 const register = async (req, res) => {
     try {
-      
         console.log("asdhajkhdkahdka");
+        return res.status(201).json({
+            statusCode: 201,
+            data: {
+             "asd":"dad"
+            }
+          });
+       
 
         const { name, email, password } = req.body;
       
