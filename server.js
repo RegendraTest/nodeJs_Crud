@@ -24,13 +24,12 @@ try {
     const authRoutes = require('./routes/authRoutes');
     const productRoutes = require('./routes/productRoutes');
     const categoryRoutes = require('./routes/categoryRoutes');
-    const verifyToken = require('./middleware/auth');
 
     // Routes
     app.use('/api/auth', authRoutes);
-    app.use('/api/users', verifyToken, userRoutes);
-    app.use('/api/products', verifyToken, productRoutes);
-    app.use('/api/category', verifyToken, categoryRoutes);
+    app.use('/api/users',  userRoutes);
+    app.use('/api/products',  productRoutes);
+    app.use('/api/category',  categoryRoutes);
 
 } catch (error) {
     console.error('Error loading routes:', error.message);
