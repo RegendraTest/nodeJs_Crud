@@ -20,7 +20,7 @@ const register = async (req, res) => {
     
         // Create user
         const [result] = await db.query(
-            'INSERT INTO users (name, email, password) VALUES (?, ?, ?)',
+            'INSERT INTO users (name, email, password,) VALUES (?, ?, ?)',
             [name, email, hashedPassword]
         );
         
