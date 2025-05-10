@@ -5,6 +5,7 @@ const db = require('../config/db.config');
 const register = async (req, res) => {
     try {
       
+        console.log("asdhajkhdkahdka");
 
         const { name, email, password } = req.body;
       

@@ -1,26 +1,32 @@
-const mysql = require('mysql2');
-require('dotenv').config();
+// db.js
+import { Pool } from "pg";
+import dotenv from "dotenv";
 
-const pool = mysql.createPool({
-    host: process.env.DB_HOST,
-    user: process.env.DB_USER,
-    password: process.env.DB_PASSWORD,
-    database: process.env.DB_NAME,
-    waitForConnections: true,
-    connectionLimit: 10,
-    queueLimit: 0
+dotenv.config();
+
+const pool = new Pool({
+  connectionString: 'postgres://0196b87b-d3b7-726f-8459-95b8b62e063c:ab1a8f3e-eef8-448e-885e-67c758a29e86@us-west-2.db.thenile.dev/nile_orange_yacht',
+  ssl: {
+    rejectUnauthorized: false, // Optional, required if your DB requires SSL (like Heroku/Neon)
+  },
 });
 
-const promisePool = pool.promise();
+export default async function runCommand(command) {
+  const client = await pool.connect();
+  try {
+    const result = await client.query(command);
+    return result;
+  } finally {
+    client.release();
+  }
+}
 
-// Test the connection
-pool.getConnection((err, connection) => {
-    if (err) {
-        console.error('Database connection failed:', err);
-        return;
-    }
-    console.log('Successfully connected to the database.');
-    connection.release();
-});
-
-module.exports = promisePool;
+// Optional: test connection
+pool.connect()
+  .then(client => {
+    console.log("Connected to PostgreSQL successfully.");
+    client.release();
+  })
+  .catch(err => {
+    console.error("Database connection failed:", err);
+  });
